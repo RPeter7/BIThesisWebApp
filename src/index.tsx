@@ -1,10 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './app/layout/App';
+import { createBrowserHistory } from 'history';
 import * as serviceWorker from './serviceWorker';
+import { Router } from 'react-router-dom';
+import ScrollToTop from './app/layout/ScrollToTop'
+import 'react-toastify/dist/ReactToastify.min.css';
+import './app/layout/styles.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export const history = createBrowserHistory();
+
+ReactDOM.render(
+    <Router history={history}>
+        <ScrollToTop>
+            <App />
+        </ScrollToTop>
+    </Router>,
+    document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
