@@ -5,6 +5,7 @@ import TextInput from '../../feature/common/formInputs/TextInput';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { IUserFormValues } from '../../app/models/user';
 import { FORM_ERROR } from 'final-form';
+import { history } from '../..'
 import { combineValidators, isRequired } from 'revalidate';
 import ErrorMessage from '../../feature/common/formInputs/ErrorMessage';
 

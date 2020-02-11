@@ -2,20 +2,20 @@ import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
 import { IUser, IUserFormValues } from '../models/user';
-import { request } from 'https';
+import { ITestData } from '../models/test';
 
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://localhost:5000';
 
-axios.interceptors.request.use(
-    confing => {
-        const token = window.localStorage.getItem('jwt');
-        if (token) confing.headers.Authorization = `Bearer ${token}`;
-        return confing;
-    },
-    error => {
-        return Promise.reject(error);
-    }
-);
+// axios.interceptors.request.use(
+//     confing => {
+//         const token = window.localStorage.getItem('jwt');
+//         if (token) confing.headers.Authorization = `Bearer ${token}`;
+//         return confing;
+//     },
+//     error => {
+//         return Promise.reject(error);
+//     }
+// );
 
 axios.interceptors.response.use(undefined, error => {
     if (error.message === 'Network Error' && !error.response) {
@@ -39,7 +39,6 @@ axios.interceptors.response.use(undefined, error => {
 });
 
 const responseBody = (response: AxiosResponse) => response.data;
-
 
 const requests = {
     get: (url: string) =>
@@ -66,7 +65,12 @@ const User = {
     register: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/register`, user)
 };
 
+const Test = {
+    getTestData: (): Promise<ITestData[]> => requests.get('/api/test')
+}
+
 
 export default {
-    User
+    User,
+    Test
 };

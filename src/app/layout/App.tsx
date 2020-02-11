@@ -1,5 +1,6 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Container } from 'semantic-ui-react';
+import { observer } from 'mobx-react-lite';
 import {
   Route,
   withRouter,
@@ -37,4 +38,4 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   );
 }
 
-export default withRouter(App);
+export default withRouter(observer(App));

@@ -1,6 +1,6 @@
-import React, { ComponentClass, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { FieldRenderProps } from 'react-final-form';
-import { FormFieldProps, Form, Label } from 'semantic-ui-react';
+import { Form, Label } from 'semantic-ui-react';
 
 // interface IProps
 //   extends FunctionComponent<FieldRenderProps<string, HTMLInputElement>>,

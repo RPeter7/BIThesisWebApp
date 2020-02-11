@@ -1,13 +1,25 @@
-import React from 'react';
-import NavBar from '../nav/NavBar';
-import { Table, Container } from 'semantic-ui-react';
+import React, { useContext, useEffect } from 'react';
+import { Container } from 'semantic-ui-react';
 import TestTable from '../tables/TestTable';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 import TestChart from '../charts/TestChart';
+import { RootStoreContext } from '../../app/stores/rootStore';
+import LoadingComponent from '../../app/layout/LoadingComponent';
+import { observer } from 'mobx-react-lite';
 
-const data = [{ name: 'Page A', uv: 400 }, { name: 'Page B', uv: 300 }, { name: 'Page C', uv: 250 }];
 
 const HomePage = () => {
+    const rootStore = useContext(RootStoreContext);
+    const { loadTestData, loadingInitial } = rootStore.testDataStore;
+
+    useEffect(() => {
+        loadTestData();
+    }, [loadTestData]);
+
+
+    if (loadingInitial)
+        return <LoadingComponent content='Loading Test Data' />;
+
+
     return (
         <Container>
             <TestTable />
@@ -16,4 +28,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default observer(HomePage);
